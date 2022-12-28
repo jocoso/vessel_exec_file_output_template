@@ -2,34 +2,43 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <SFML/Graphics.hpp>
 
-#include "absscene.h"
 #include "scenes.h"
-
-void retreive_file(struct SCN * scn, std::ifstream& ifs);
+#include "vessel_factory.h"
 
 int main() {
-    // Get all scenes from the scene folder
-    // Place the scene inside a list
-    std::ifstream file;
-    for(int i = 0; i < NUM_OF_SCENES; i++) {
-        retreive_file(&SCN[i], file);
+    // All components wil be created in the VesselFactory
+    VesselFactory *_factory = VesselFactory::GetInstance();
+    Scene *scn = _factory->new_scene(
+                                        "Scene 0",   // Name
+                                        500.0,       // Width
+                                        700.0,       // Height
+                                        100,         // Red
+                                        100,         // Green
+                                        100          // Blue
+                                    );
+
+    sf::RenderWindow window(sf::VideoMode(500, 700), "trial 1");
+
+    while(window.isOpen()) {
+        sf::Event event;
+
+        while(window.pollEvent(event)) {
+            if(event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear();
+        window.draw(*scn);
+        window.display();
     }
 
+    free(scn);
+    free(_factory);
     return 0;
 }
 
-void retreive_file(struct SCN *scn, std::ifstream& ifs) {
 
-    ifs.clear();
-    std::string fileName(scn->addr);
-
-    ifs.open(scn->addr);
-
-    if(!ifs.is_open()) {
-        std::cout << "No Such File Exists" << "\n";
-    } else {
-        std::cout << ifs.rdbuf();
-    }
-        
-}

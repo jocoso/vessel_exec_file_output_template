@@ -6,7 +6,7 @@
     int id;
     const char *addr;
 } SCN[] {
-    { .id = 0, .addr="./src/scenes/scene0.txt"}
+    { .id = 0, .addr="./src/scenes/scene0.xml"}
 };
 
 #endif // SCENES_H
