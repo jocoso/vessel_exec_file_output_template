@@ -8,18 +8,20 @@
 namespace kra {
     class Scene {
     private:
-        sf::Vector2f _dimensions;
+        // BACKGROUND
         sf::Sprite _bgimg;
         sf::Texture _bgtxre;
     public:
-        Scene(const char *path);
-        sf::Vector2f getSize();
+        Scene(const char *path, const sf::Vector2f dim);
         void update(sf::RenderWindow &window);
         sf::Sprite getBackgroundImg();
         ~Scene();
 
     protected:
         sf::Texture loadTexture(const char *filename);
+    
+    private:
+        Scene();
     };
 }
 

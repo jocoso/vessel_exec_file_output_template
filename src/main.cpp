@@ -10,23 +10,20 @@
 #include "scene.hpp"
 
 int main() {
+    sf::Vector2f winsize(1000, 800);
+    kra::Scene scn("images/map.jpg", winsize);
+    sf::RenderWindow window(sf::VideoMode(winsize.x, winsize.y), "SFML");
+    window.setFramerateLimit(45);
 
-    kra::Scene scn("images/map.jpg");
-    sf::RenderWindow window(sf::VideoMode(scn.getSize().x, scn.getSize().y), "SFML");
-
-
+    sf::Event event;
     while(window.isOpen()) {
-        sf::Event event;
 
         while(window.pollEvent(event)) {
             if(event.type == sf::Event::Closed)
                 window.close();
-
-            window.clear();
-            scn.update(window);
-            window.display();
-            
         }
+
+        scn.update(window);
     }
 
     return 0;
