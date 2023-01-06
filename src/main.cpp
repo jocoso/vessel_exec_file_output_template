@@ -6,36 +6,18 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 
-#include "scenes.h"
-#include "button.h"
-#include "vessel_factory.h"
+#include <iostream>
+#include "scene.hpp"
 
 int main() {
-    float width = 500.f;
-    float height = 700.f;
-
-    sf::Vector2f v1(20, 30);
-    sf::Vector2f v2(20, 30);
-
-    sf::Font font;
-    if(!font.loadFromFile("arial.ttf")) {
-
+    sf::Image bg;
+    if(!bg.loadFromFile("images/map.jpg")) {
+        std::cout << "Cannot load Image" << "\n";
+        return -1;
     }
 
-    gui::Button b(0, v1, v2, "hello", font);
-
-    // All components wil be created in the VesselFactory
-    VesselFactory *_factory = VesselFactory::GetInstance();
-    Scene *scn = _factory->new_scene(
-                                        "Scene 0",   // Name
-                                        width,       // Width
-                                        height,      // Height
-                                        100,         // Red
-                                        100,         // Green
-                                        100          // Blue
-                                    );
-
-    sf::RenderWindow window(sf::VideoMode(width, height), "trial 1");
+    kra::Scene scn(bg);
+    sf::RenderWindow window(sf::VideoMode(scn.getSize().x, scn.getSize().y), "SFML");
 
     while(window.isOpen()) {
         sf::Event event;
@@ -43,15 +25,14 @@ int main() {
         while(window.pollEvent(event)) {
             if(event.type == sf::Event::Closed)
                 window.close();
-        }
 
-        window.clear();
-        window.draw(*scn);
-        window.display();
+            window.clear();
+            scn.play(window);
+            window.display();
+            
+        }
     }
 
-    free(scn);
-    free(_factory);
     return 0;
 }
 
