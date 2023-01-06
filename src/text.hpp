@@ -5,6 +5,7 @@
 #include <string>
 #include "component.hpp"
 
+
 namespace kra {
     class Text : public Component {
     private:
@@ -13,6 +14,8 @@ namespace kra {
     public:
         Text(std::string content, sf::Vector2f pos) : 
             Component(pos) {
+
+                // Preparing generic text
                 setFont("arial.ttf");
                 text.setFont(font);
                 text.setString(content);
@@ -21,23 +24,13 @@ namespace kra {
                 text.setStyle(sf::Text::Bold);
                 text.setPosition(position);
             }
-        Text(const char *content, float x, float y) :
-            Component(x, y) {
-                sf::Font font;
 
-                if(!font.loadFromFile("arial.ttf")) {
-                    std::cout << "Font couldn't be loaded\n";
-                    exit(-1);
-                }
-
-                text.setFont(font);
-                text.setString(content);
-                text.setCharacterSize(20);
-                text.setFillColor(sf::Color::White);
-                text.setStyle(sf::Text::Bold);
-            }
+        // Delegating constructor
+        Text(const char *content, float x, float y) : Text(content, sf::Vector2f(x, y)) {}
 
         void setFont(const char *path);
+        void setFont(sf::Font _font);
+        void setFillColor(sf::Color color);
         virtual void update() override;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     };
