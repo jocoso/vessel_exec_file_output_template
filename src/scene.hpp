@@ -1,6 +1,8 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
+
+#include <iostream>
 #include "SFML/Graphics.hpp"
 
 namespace kra {
@@ -8,10 +10,16 @@ namespace kra {
     private:
         sf::Vector2f _dimensions;
         sf::Sprite _bgimg;
+        sf::Texture _bgtxre;
     public:
-        Scene(sf::Image bgimg);
+        Scene(const char *path);
         sf::Vector2f getSize();
-        void play(sf::RenderWindow &window);
+        void update(sf::RenderWindow &window);
+        sf::Sprite getBackgroundImg();
+        ~Scene();
+
+    protected:
+        sf::Texture loadTexture(const char *filename);
     };
 }
 

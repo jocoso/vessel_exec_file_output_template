@@ -10,14 +10,10 @@
 #include "scene.hpp"
 
 int main() {
-    sf::Image bg;
-    if(!bg.loadFromFile("images/map.jpg")) {
-        std::cout << "Cannot load Image" << "\n";
-        return -1;
-    }
 
-    kra::Scene scn(bg);
+    kra::Scene scn("images/map.jpg");
     sf::RenderWindow window(sf::VideoMode(scn.getSize().x, scn.getSize().y), "SFML");
+
 
     while(window.isOpen()) {
         sf::Event event;
@@ -27,7 +23,7 @@ int main() {
                 window.close();
 
             window.clear();
-            scn.play(window);
+            scn.update(window);
             window.display();
             
         }
