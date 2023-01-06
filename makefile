@@ -10,9 +10,10 @@ SRC_DIR          =src
 # and replaces them with replacement.
 # % acts as a wildcard matching any number of any characters withing
 # a word.
-_DEPS 			 =main.cpp scene.cpp text.cpp component.cpp utils.cpp
+_DEPS 			 =main.cpp scene.cpp text.cpp component.cpp button.cpp\
+					utils.cpp
 DEPS             =$(patsubst %,$(SRC_DIR)/%,$(_DEPS))
-_OBJS            =main.o scene.o text.o
+_OBJS            =main.o scene.o text.o button.o
 OBJS             =$(patsubst %,$(O_DIR)/%, $(_OBJS))
 
 EXEC             =main

@@ -1,17 +1,23 @@
 // Include list
 
-#include "utils.hpp"
 #include "scene.hpp"
 #include "text.hpp"
+#include "button.hpp"
 
 int main() {
 
     sf::Vector2f winsize(1500, 800);  // Screen size
-    
+
     // Creating an scene
     // A scene is a self contained entity that display the components
     //   the user gives it.
     kra::Scene scn("images/char_select_bg.png", winsize);
+
+    // Making image buttons
+    kra::Button *card0 = new kra::Button("images/card0.jpg", sf::Vector2f(350, 500), sf::Vector2f(50, (winsize.y/2)-240));
+    kra::Button *card1 = new kra::Button("images/card1.jpg", sf::Vector2f(350, 500), sf::Vector2f(420, (winsize.y/2)-240));
+    kra::Button *card2 = new kra::Button("images/card2.jpg", sf::Vector2f(350, 500), sf::Vector2f(790, (winsize.y/2)-240));
+
 
     // Creating mandatory edgy text
     kra::Text *txt = new kra::Text("The body is a vessel", 500.f, 10.f);
@@ -29,6 +35,9 @@ int main() {
     // Adding component to scene will make sure to render it
     scn.addComponent(txt);
     scn.addComponent(txt2);
+    scn.addComponent(card0);
+    scn.addComponent(card1);
+    scn.addComponent(card2);
 
     sf::RenderWindow window(sf::VideoMode(winsize.x, winsize.y), "SFML");
     window.setFramerateLimit(45);
