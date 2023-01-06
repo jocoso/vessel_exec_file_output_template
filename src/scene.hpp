@@ -3,7 +3,9 @@
 
 
 #include <iostream>
+#include <vector>
 #include "SFML/Graphics.hpp"
+#include "component.hpp"
 
 namespace kra {
     class Scene {
@@ -11,10 +13,12 @@ namespace kra {
         // BACKGROUND
         sf::Sprite _bgimg;
         sf::Texture _bgtxre;
+        std::vector<Component*> componentList;
     public:
         Scene(const char *path, const sf::Vector2f dim);
         void update(sf::RenderWindow &window);
         sf::Sprite getBackgroundImg();
+        void addComponent(Component *component);
         ~Scene();
 
     protected:

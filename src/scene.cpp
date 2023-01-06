@@ -10,6 +10,7 @@ kra::Scene::Scene(const char *path, const sf::Vector2f dim) {
     _bgtxre = loadTexture(path);
     _bgimg.setTexture(_bgtxre);
 
+    // Scale image to given screen dimensions
     _bgimg.setScale(
         dim.x / _bgimg.getLocalBounds().width,
         dim.y / _bgimg.getLocalBounds().height
@@ -19,11 +20,21 @@ kra::Scene::Scene(const char *path, const sf::Vector2f dim) {
 void kra::Scene::update(sf::RenderWindow &window) {
     window.clear(sf::Color::Black);
     window.draw(_bgimg);
+
+    for(auto component: componentList) {
+        component->update();
+        window.draw(*component);
+    }
+
     window.display();
 }
 
 sf::Sprite kra::Scene::getBackgroundImg() {
     return _bgimg;
+}
+
+void kra::Scene::addComponent(kra::Component *component) {
+    componentList.push_back(component);
 }
 
 sf::Texture kra::Scene::loadTexture(const char *filename) {
@@ -39,4 +50,8 @@ sf::Texture kra::Scene::loadTexture(const char *filename) {
 
 }
 
-kra::Scene::~Scene() {}
+kra::Scene::~Scene() {
+    for(auto component: componentList) {
+        free(component);
+    }
+}

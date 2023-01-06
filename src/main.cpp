@@ -8,10 +8,18 @@
 
 #include <iostream>
 #include "scene.hpp"
+#include "text.hpp"
 
 int main() {
-    sf::Vector2f winsize(1000, 800);
-    kra::Scene scn("images/map.jpg", winsize);
+    sf::Vector2f winsize(1500, 800);
+    sf::Vector2f pos(600, 10);
+    
+    kra::Scene scn("images/char_select_bg.png", winsize);
+    kra::Text *txt = new kra::Text("The body rots", pos);
+    txt->setFont("Cinzel.ttf");
+
+    scn.addComponent(txt);
+
     sf::RenderWindow window(sf::VideoMode(winsize.x, winsize.y), "SFML");
     window.setFramerateLimit(45);
 
