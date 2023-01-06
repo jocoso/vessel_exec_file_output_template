@@ -4,6 +4,10 @@
 #include "text.hpp"
 #include "button.hpp"
 
+void on_click(void) {
+    std::cout << "Clickily click\n";
+}
+
 int main() {
     sf::RenderWindow window(sf::VideoMode(0, 0), "SFML", sf::Style::Fullscreen);
     window.setFramerateLimit(45);
@@ -16,7 +20,7 @@ int main() {
 
     // Making image buttons
     kra::Button *card0 = new kra::Button("images/card0.png", sf::Vector2f(400, 820), sf::Vector2f(50, (winsize.y/2)-410));
-
+    card0->onClick(on_click);
 
     // Creating mandatory edgy text
     kra::Text *txt = new kra::Text("The body is a vessel", 500.f, 10.f);
@@ -35,8 +39,6 @@ int main() {
     scn.addComponent(txt);
     scn.addComponent(txt2);
     scn.addComponent(card0);
-
-    
 
     sf::Event event;
     while(window.isOpen()) {

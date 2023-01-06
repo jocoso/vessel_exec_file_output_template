@@ -1,7 +1,7 @@
 #include "text.hpp"
 
 // TBD
-void kra::Text::update() {}
+void kra::Text::update(sf::RenderWindow &win) {}
 
 void kra::Text::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(text);

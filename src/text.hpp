@@ -31,7 +31,7 @@ namespace kra {
         void setFont(const char *path);
         void setFont(sf::Font _font);
         void setFillColor(sf::Color color);
-        virtual void update() override;
+        virtual void update(sf::RenderWindow &win) override;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     };
 }

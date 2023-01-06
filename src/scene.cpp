@@ -22,7 +22,7 @@ void kra::Scene::update(sf::RenderWindow &window) {
     window.draw(_bgimg);
 
     for(auto component: componentList) {
-        component->update();
+        component->update(window);
         window.draw(*component);
     }
 
