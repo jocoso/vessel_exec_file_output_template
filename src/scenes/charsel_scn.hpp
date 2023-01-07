@@ -2,6 +2,7 @@
 #define CHARSEL_SCN_HPP
 
 #include "../scene.hpp"
+#include "../button.hpp"
 
 
 class CharacterSelectionScene : public kra::Scene {
@@ -10,7 +11,7 @@ public:
         kra::Scene("images/char_select_bg.png", _window) {}
     
     void init(sf::RenderWindow &window);
-    void render(sf::RenderWindow &window);
+    void update(sf::RenderWindow &window);
     
 };
 

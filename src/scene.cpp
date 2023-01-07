@@ -28,11 +28,15 @@ void kra::Scene::draw(sf::RenderWindow &window) {
     window.clear(sf::Color::Black);
     window.draw(_bgimg);
 
-    // XXX: Don't draw component in update or you risk
-    // drawing the component twice. If component will be drawn in this function
-    // for any particular reason. Don't add said component to the scene.
-    // For the sake of keeping the program clean update is for data inside a custom
-    // made scene that need to be updated
+    /* 
+       XXX: Don't draw components in 'update' or you risk drawing a component twice.
+
+       If a component must be drawn in this function for any particular reason 
+       refrain from using the function 'addComponent.'
+
+       For the sake of keeping the program clean 'update' is used to update class members
+       within a child scene that need to be updated every frame.
+    */
     update(window);
 
     for(auto component: componentList) {
