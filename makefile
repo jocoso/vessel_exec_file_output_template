@@ -5,6 +5,7 @@ LDLIB            =-Llib -lsfml-graphics -lsfml-window -lsfml-system
 I_DIR            =include
 O_DIR            =obj
 SRC_DIR          =src
+SCN_DIR          =src/scenes
 # $(patsubst pattern, replacement, text)
 # Finds whitespace-separated words in text that match pattern
 # and replaces them with replacement.
@@ -15,7 +16,8 @@ _DEPS 			 =main.cpp scene.cpp text.cpp component.cpp button.cpp\
 DEPS             =$(patsubst %,$(SRC_DIR)/%,$(_DEPS))
 _OBJS            =main.o scene.o text.o button.o
 OBJS             =$(patsubst %,$(O_DIR)/%, $(_OBJS))
-
+_SCNS            =charsel_scn.cpp
+SCNS             =$(patsubst %,$(SCN_DIR)/%, $(_SCNS))
 EXEC             =main
 
 ############################################################
@@ -40,11 +42,14 @@ DIRFLAGS         =-I$(I_DIR)
 # Default Rule
 # all: $(OBJS) $(EXEC)
 
-main: $(OBJS)
+main: $(OBJS) $(SCNS)
 	$(CXX) -o $@ $^ $(DIRFLAGS) $(LDLIB)
 
 # Makes objects files in obj directory
-$(O_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(O_DIR)/%.o: $(SRC_DIR)/%.cpp 
+	$(CXX) -c -o $@ $< $(DIRFLAGS)
+
+$(O_DIR)/%.o: $(SNC_DIR)/%.cpp
 	$(CXX) -c -o $@ $< $(DIRFLAGS)
 
 # Creates the executable

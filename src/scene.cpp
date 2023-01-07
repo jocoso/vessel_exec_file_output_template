@@ -1,10 +1,14 @@
 #include "scene.hpp"
 
 
-kra::Scene::Scene(const char *path, const sf::Vector2f dim) {
+kra::Scene::Scene(const char *path, sf::RenderWindow *_window) {
+
+    window = _window;
 
     // Preparing image for rendering
-
+    sf::Vector2f dim;
+    dim.x = window->getSize().x;
+    dim.y = window->getSize().y;
     // XXX: Sprite requires an existing copy of the texture
     // to be present in the memory while in use.
     _bgtxre = loadTexture(path);
@@ -15,11 +19,21 @@ kra::Scene::Scene(const char *path, const sf::Vector2f dim) {
         dim.x / _bgimg.getLocalBounds().width,
         dim.y / _bgimg.getLocalBounds().height
     );
+
+    // Initializing extra content
+    init(*window);
 }
 
-void kra::Scene::update(sf::RenderWindow &window) {
+void kra::Scene::draw(sf::RenderWindow &window) {
     window.clear(sf::Color::Black);
     window.draw(_bgimg);
+
+    // XXX: Don't draw component in update or you risk
+    // drawing the component twice. If component will be drawn in this function
+    // for any particular reason. Don't add said component to the scene.
+    // For the sake of keeping the program clean update is for data inside a custom
+    // made scene that need to be updated
+    update(window);
 
     for(auto component: componentList) {
         component->update(window);
