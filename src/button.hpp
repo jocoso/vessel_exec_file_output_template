@@ -6,7 +6,7 @@
 #include "component.hpp"
 
 namespace kra {
-    class Button : public Component {
+    class Button : public Component  {
     private:
         sf::Texture but_tex;
         sf::Sprite but_spr;

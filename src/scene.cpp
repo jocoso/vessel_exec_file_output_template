@@ -19,9 +19,6 @@ kra::Scene::Scene(const char *path, sf::RenderWindow *_window) {
         dim.x / _bgimg.getLocalBounds().width,
         dim.y / _bgimg.getLocalBounds().height
     );
-
-    // Initializing extra content
-    init(*window);
 }
 
 void kra::Scene::draw(sf::RenderWindow &window) {

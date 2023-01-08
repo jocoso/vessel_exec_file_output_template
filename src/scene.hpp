@@ -23,8 +23,7 @@ namespace kra {
         ~Scene();
 
     protected:
-        void init(sf::RenderWindow &window) {} // Modifiable by inheritance
-        void update(sf::RenderWindow &window) {} // Modifiable by inheritance 
+        virtual void update(sf::RenderWindow &window) {}; // Modifiable by inheritance 
         sf::Texture loadTexture(const char *filename);
     
     private:
