@@ -2,8 +2,6 @@
 #define CHARSEL_SCN_HPP
 
 #include "../scene.hpp"
-#include "../button.hpp"
-#include "../text.hpp"
 #include "../input_text.hpp"
 #include "../pieces/topmenu_charsel.hpp"
 

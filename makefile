@@ -12,10 +12,10 @@ PCS_DIR          =src/pieces
 # and replaces them with replacement.
 # % acts as a wildcard matching any number of any characters withing
 # a word.
-_DEPS 			 =main.cpp scene.cpp text.cpp component.cpp button.cpp\
+_DEPS 			 =main.cpp scene.cpp component.cpp button.cpp\
 					utils.cpp input_text.cpp
 DEPS             =$(patsubst %,$(SRC_DIR)/%,$(_DEPS))
-_OBJS            =main.o scene.o text.o button.o input_text.o
+_OBJS            =main.o scene.o input_text.o button.o
 OBJS             =$(patsubst %,$(O_DIR)/%, $(_OBJS))
 _SCNS            =charsel_scn.cpp
 SCNS             =$(patsubst %,$(SCN_DIR)/%, $(_SCNS))
@@ -32,7 +32,7 @@ CXX              =g++
 
 ABS_PATH         =-I
 DEBUG_LEVEL      =-g
-EXTRA_CCFLAGS    =-Wall
+EXTRA_CCFLAGS    =-Wall -std=c++11
 CXXFLAGS         =$(DEBUG_LEVEL) $(EXTRA_CCFLAGS)
 
 # What flags should be passed to the pre-processor.
@@ -46,17 +46,17 @@ DIRFLAGS         =-I$(I_DIR)
 # all: $(OBJS) $(EXEC)
 
 main: $(OBJS) $(SCNS) $(PECS)
-	$(CXX) -o $@ $^ $(DIRFLAGS) $(LDLIB)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(DIRFLAGS) $(LDLIB)
 
 # Makes objects files in obj directory
 $(O_DIR)/%.o: $(SRC_DIR)/%.cpp 
-	$(CXX) -c -o $@ $< $(DIRFLAGS)
+	$(CXX) $(CXXFLAGS) -c -o $@ $< $(DIRFLAGS)
 
 $(O_DIR)/%.o: $(SNC_DIR)/%.cpp
-	$(CXX) -c -o $@ $< $(DIRFLAGS)
+	$(CXX) $(CXXFLAGS) -c -o $@ $< $(DIRFLAGS)
 
 $(O_DIR)/%.o: $(PCS_DIR)/%.cpp
-	$(CXX) -c -o $@ $< $(DIRFLAGS)
+	$(CXX) $(CXXFLAGS) -c -o $@ $< $(DIRFLAGS)
 
 # Creates the executable
 #$(EXEC): $(OBJS)

@@ -2,11 +2,13 @@
 #define TOPMENU_CHARSEL_HPP
 
 #include "../component.hpp"
+#include "../button.hpp"
 
 
 class TopMenu : public kra::Component {
 private:
     sf::RectangleShape bg;
+    kra::Button btn;
 
 public:
     TopMenu(sf::RenderWindow *_win, sf::Vector2f pos);
