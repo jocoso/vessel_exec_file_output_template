@@ -1,14 +1,16 @@
 #include "button.hpp"
 
-kra::Button::Button(sf::String name, sf::Vector2f pos):kra::Component(pos) {
-    but_font = utils::loadFont("arial.ttf");
+kra::Button::Button(const sf::String name, sf::Vector2f pos):kra::Component(pos) {
     
-    but_name.setString(name);
-    but_name.setFillColor(sf::Color::Black);
-    but_name.setCharacterSize(10);
-    but_name.setFont(but_font);
+    but_font.loadFromFile("arial.ttf");
 
-    but_background_spr.setTexture(but_background_tex);
+    but_name.setString(name);
+    but_name.setFont(but_font);
+    but_name.setCharacterSize(10);
+    but_name.setStyle(sf::Text::Bold);
+    but_name.setFillColor(sf::Color::Black);
+
+    //but_background_spr.setTexture(but_background_tex);
 
 }
 
