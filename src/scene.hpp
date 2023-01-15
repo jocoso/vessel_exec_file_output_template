@@ -13,7 +13,9 @@ namespace kra {
         // BACKGROUND
         sf::Sprite _bgimg;
         sf::Texture _bgtxre;
+        sf::Event _event;
         std::vector<Component*> componentList;
+    protected:
         sf::RenderWindow *window;
     public:
         Scene(const char *path, sf::RenderWindow *_window);
@@ -23,9 +25,9 @@ namespace kra {
         ~Scene();
 
     protected:
-        virtual void update(sf::RenderWindow &window) {}; // Modifiable by inheritance 
+        virtual void update(sf::RenderWindow &window, sf::Event &event) {}; // Modifiable by inheritance 
         sf::Texture loadTexture(const char *filename);
-    
+
     private:
         Scene();
     };

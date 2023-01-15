@@ -1,7 +1,28 @@
 #include "text.hpp"
 
+kra::Text::Text(sf::String content, unsigned int position, sf::Vector2f winsize, float _y)
+    :Component(sf::Vector2f(0, 0))
+ {
+    // Preparing generic text
+    setFont("arial.ttf");
+    text.setFont(font);
+    text.setString(content);
+    text.setCharacterSize(50);
+    text.setFillColor(sf::Color::White);
+    text.setStyle(sf::Text::Bold);
+    
+    // CENTER
+    float width = text.getLocalBounds().width / 2;
+    //unsigned int size = width * content.getSize();
+    text.setPosition(sf::Vector2f(
+        (winsize.x / 2) - width,
+        _y
+    ));
+
+}
+
 // TBD
-void kra::Text::update(sf::RenderWindow &win) {}
+void kra::Text::update(sf::RenderWindow &win, sf::Event &event) {}
 
 void kra::Text::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(text);

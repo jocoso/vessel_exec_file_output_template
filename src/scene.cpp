@@ -34,10 +34,15 @@ void kra::Scene::draw(sf::RenderWindow &window) {
        For the sake of keeping the program clean 'update' is used to update class members
        within a child scene that need to be updated every frame.
     */
-    update(window);
+    while(window.pollEvent(_event)) {
+        update(window, _event);
+
+        for(auto component: componentList) {
+            component->update(window, _event);
+        }
+    }
 
     for(auto component: componentList) {
-        component->update(window);
         window.draw(*component);
     }
 

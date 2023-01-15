@@ -1,6 +1,6 @@
 #include "button.hpp"
 
-void kra::Button::update(sf::RenderWindow &win) {
+void kra::InteractableImage::update(sf::RenderWindow &win, sf::Event &event) {
     auto mouse_pos = sf::Mouse::getPosition(win); 
     auto translated_pos = win.mapPixelToCoords(mouse_pos);
 
@@ -34,18 +34,26 @@ void kra::Button::update(sf::RenderWindow &win) {
     }
 }
 
-void kra::Button::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+void kra::InteractableImage::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(but_spr);
 }
 
-void kra::Button::onClick(void (*function)(void)) {
-    on_click = function;
+void kra::InteractableImage::onClick(std::function<void()> _func) {
+    on_click = _func;
 }
 
 // set a ratio between 0 and 1
 // It will scale the image to that ratio by adding the ratio to the
 // previous ratio. It is recommended to use small float numbers
 // 0.01 0.02 instead of 1 or 0.5 as it will make the image obsenely big
-void kra::Button::setRatioGrow(float _ratio_grow) {
+void kra::InteractableImage::setRatioGrow(float _ratio_grow) {
     ratio_grow = _ratio_grow;
+}
+
+void kra::InteractableImage::setSprite(sf::Sprite spr) {
+    but_spr = spr;
+}
+
+void kra::InteractableImage::setTexture(sf::Texture tex) {
+    but_tex = tex;
 }

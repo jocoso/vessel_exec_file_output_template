@@ -21,10 +21,6 @@ int main() {
     // //   the user gives it.
     // kra::Scene scn("images/char_select_bg.png", winsize);
 
-    // // Making image buttons
-    // kra::Button *card0 = new kra::Button("images/card0.png", sf::Vector2f(400, 820), sf::Vector2f(50, (winsize.y/2)-410));
-    // card0->onClick(on_click);
-
     // // Creating mandatory edgy text
     // kra::Text *txt = new kra::Text("The body is a vessel", winsize.x / 2, 10.f);
     // kra::Text *txt2 = new kra::Text("Pick yours", 600.f, 50.f);

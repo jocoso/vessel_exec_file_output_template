@@ -10,7 +10,7 @@ namespace kra {
     public:
         Component(sf::Vector2f _position) : position(_position) {}
         Component(float x, float y) : position(x, y) {}
-        virtual void update(sf::RenderWindow &win) = 0;
+        virtual void update(sf::RenderWindow &win, sf::Event &event) = 0;
     };
 }
 
